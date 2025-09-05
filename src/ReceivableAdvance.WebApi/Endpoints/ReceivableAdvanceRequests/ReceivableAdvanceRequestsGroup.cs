@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning.Builder;
 using ReceivableAdvance.WebApi.Endpoints.ReceivableAdvanceRequests.CreateReceivableAdvanceRequests;
 using ReceivableAdvance.WebApi.Endpoints.ReceivableAdvanceRequests.FinishReceivableAdvanceRequests;
+using ReceivableAdvance.WebApi.Endpoints.ReceivableAdvanceRequests.SimulateReceivableAdvanceRequests;
 
 namespace ReceivableAdvance.WebApi.Endpoints.ReceivableAdvanceRequests;
 
@@ -13,15 +14,8 @@ public static class ReceivableAdvanceRequestsGroup
             .WithApiVersionSet(versions)
             .HasApiVersion(new(1, 0))
             .MapCreateReceivableAdvanceRequestEndpoint()
-            .MapFinishReceivableAdvanceRequestEndpoint();
-
-
-
-        //group.MapGet("/", GetAllReceivableAdvanceRequestsEndpoint.Handle);
-        //group.MapGet("/{id:guid}", GetReceivableAdvanceRequestByIdEndpoint.Handle);
-        //group.MapPost("/", CreateReceivableAdvanceRequestEndpoint.Handle);
-        //group.MapPut("/{id:guid}", UpdateReceivableAdvanceRequestEndpoint.Handle);
-        //group.MapDelete("/{id:guid}", DeleteReceivableAdvanceRequestEndpoint.Handle);
+            .MapFinishReceivableAdvanceRequestEndpoint()
+            .MapSimulateReceivableAdvanceRequestEndpoint();
         return routes;
     }
 }

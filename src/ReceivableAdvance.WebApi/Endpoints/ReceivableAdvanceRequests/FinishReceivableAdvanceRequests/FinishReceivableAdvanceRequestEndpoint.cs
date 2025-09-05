@@ -31,14 +31,14 @@ public static class FinishReceivableAdvanceRequestEndpoint
     public static RouteGroupBuilder MapFinishReceivableAdvanceRequestEndpoint(this RouteGroupBuilder group)
     {
         group
-            .MapPatch("/advance-requests/{requestId}/approve", Aprove)
+            .MapPatch("/{requestId}/approve", Aprove)
             .Produces<Response>(StatusCodes.Status200OK)
             .Produces<ProblemDetails>(StatusCodes.Status422UnprocessableEntity)
             .Produces<ProblemDetails>(StatusCodes.Status404NotFound)
             .WithOpenApi();
 
         group
-            .MapPatch("/advance-requests/{requestId}/reject", Reject)
+            .MapPatch("/{requestId}/reject", Reject)
             .Produces<Response>(StatusCodes.Status200OK)
             .Produces<ProblemDetails>(StatusCodes.Status422UnprocessableEntity)
             .Produces<ProblemDetails>(StatusCodes.Status404NotFound)

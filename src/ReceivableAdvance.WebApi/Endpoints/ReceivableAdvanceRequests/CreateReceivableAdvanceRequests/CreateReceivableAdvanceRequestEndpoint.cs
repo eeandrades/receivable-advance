@@ -25,7 +25,7 @@ public static class CreateReceivableAdvanceRequestEndpoint
     public static RouteGroupBuilder MapCreateReceivableAdvanceRequestEndpoint(this RouteGroupBuilder group)
     {
         group
-            .MapPost("/advance-requests", ExecuteAsync)
+            .MapPost("", ExecuteAsync)
             .Produces<Response>(StatusCodes.Status201Created)
             .WithOpenApi();
         return group;

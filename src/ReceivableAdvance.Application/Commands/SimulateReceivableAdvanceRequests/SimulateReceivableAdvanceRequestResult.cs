@@ -1,0 +1,3 @@
+﻿namespace ReceivableAdvance.Application.Commands.SimulateReceivableAdvanceRequests;
+
+public sealed record SimulateReceivableAdvanceRequestResult(DateTime RequestDate, decimal NetAmmount);
