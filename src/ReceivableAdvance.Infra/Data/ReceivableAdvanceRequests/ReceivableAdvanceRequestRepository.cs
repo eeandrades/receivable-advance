@@ -1,6 +1,7 @@
 ﻿using ReceivableAdvance.Aggreegates.ReceivableAdvanceRequests;
 using ReceivableAdvance.Infra.Data.ReceivableAdvanceRequests.Mapper.Commands;
 using ReceivableAdvance.Infra.Data.ReceivableAdvanceRequests.Mapper.Queries;
+using System.Transactions;
 
 namespace ReceivableAdvance.Infra.Data.ReceivableAdvanceRequests;
 
@@ -44,5 +45,10 @@ public class ReceivableAdvanceRequestRepository(DataContext dataContext) : IRece
             Convert.ToDecimal(resultSet.NetAmount),
             resultSet.RequestDate,
             (RequestStatus)resultSet.RequestStatusId);
+    }
+
+    public Task UpdateAsync(ReceivableAdvanceRequest request)
+    {
+        return dataContext.UpdateReceivableAdvanceRequest(new(request.Id, (int)request.Status, request.FinishDate!.Value));
     }
 }

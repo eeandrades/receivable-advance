@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning.Builder;
 using ReceivableAdvance.WebApi.Endpoints.ReceivableAdvanceRequests.CreateReceivableAdvanceRequests;
+using ReceivableAdvance.WebApi.Endpoints.ReceivableAdvanceRequests.FinishReceivableAdvanceRequests;
 
 namespace ReceivableAdvance.WebApi.Endpoints.ReceivableAdvanceRequests;
 
@@ -11,7 +12,8 @@ public static class ReceivableAdvanceRequestsGroup
             .WithTags("ReceivableAdvanceRequests")
             .WithApiVersionSet(versions)
             .HasApiVersion(new(1, 0))
-            .MapCreateReceivableAdvanceRequestEndpoint();
+            .MapCreateReceivableAdvanceRequestEndpoint()
+            .MapFinishReceivableAdvanceRequestEndpoint();
 
 
 

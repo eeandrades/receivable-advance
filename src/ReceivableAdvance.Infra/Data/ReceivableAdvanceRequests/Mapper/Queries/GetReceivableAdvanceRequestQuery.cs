@@ -45,7 +45,7 @@ public static class GetReceivableAdvanceRequestQuery
     {
         var param = new
         {
-            ReceivableAdvanceRequestId = receivableAdvanceRequestId
+            ReceivableAdvanceRequestUid = receivableAdvanceRequestId
         };
         return dtc.GetReceivableAdvanceRequestByFilter(GetReceivableAdvanceRequestByIdFilter, param);
     }
