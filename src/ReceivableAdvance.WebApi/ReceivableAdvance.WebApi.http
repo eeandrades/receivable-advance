@@ -1,0 +1,6 @@
+@ReceivableAdvance.WebApi_HostAddress = http://localhost:5229
+
+GET {{ReceivableAdvance.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
