@@ -2,6 +2,7 @@ using Asp.Versioning;
 using Microsoft.OpenApi.Models;
 using ReceivableAdvance.Setup;
 using ReceivableAdvance.WebApi.Endpoints.ReceivableAdvanceRequests;
+using System.Text.Json.Serialization;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,6 +43,11 @@ builder.Services.AddSwaggerGen(options =>
         }
         return type.Name;
     });
+});
+
+builder.Services.ConfigureHttpJsonOptions(options =>
+{
+    options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 
 var app = builder.Build();

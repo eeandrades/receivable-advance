@@ -15,7 +15,8 @@ public static class ReceivableAdvanceRequestsGroup
             .HasApiVersion(new(1, 0))
             .MapCreateReceivableAdvanceRequestEndpoint()
             .MapFinishReceivableAdvanceRequestEndpoint()
-            .MapSimulateReceivableAdvanceRequestEndpoint();
+            .MapSimulateReceivableAdvanceRequestEndpoint()
+            .MapListReceivableAdvanceRequestEndpoint();
         return routes;
     }
 }

@@ -10,15 +10,15 @@ public class ReceivableAdvanceRequestRepository(DataContext dataContext) : IRece
     public async Task<ReceivableAdvanceRequest?> GetByIdAsync(Guid id)
     {
         var resultSet = await dataContext.GetReceivableAdvanceRequestById(id);
-
-        return CreateEntity(resultSet);
+        return resultSet != null ? CreateEntity(resultSet) : default;
     }
 
     public async Task<ReceivableAdvanceRequest?> GetPendingByCreatorAsync(Guid creatorId)
     {
         var resultSet = await dataContext.GetPendingReceivableAdvanceRequestByCreatorId(creatorId);
 
-        return CreateEntity(resultSet);
+
+        return resultSet != null? CreateEntity(resultSet): default;
     }
 
     public Task InsertAsync(ReceivableAdvanceRequest request)
@@ -33,22 +33,28 @@ public class ReceivableAdvanceRequestRepository(DataContext dataContext) : IRece
             request.RequestDate));
     }
 
-    private static ReceivableAdvanceRequest? CreateEntity(GetReceivableAdvanceRequestQuery.ResultSet? resultSet)
+    public Task UpdateAsync(ReceivableAdvanceRequest request)
     {
-        if (resultSet is null)
-            return default;
+        return dataContext.UpdateReceivableAdvanceRequest(new(request.Id, (int)request.Status, request.FinishDate!.Value));
+    }
 
+    public async Task<IEnumerable<ReceivableAdvanceRequest>> ListByCreatorIdAsync(Guid creatorId)
+    {
+        var dbList = await dataContext.ListReceivableAdvanceRequestByCreatorId(creatorId);
+
+        return dbList.Select(CreateEntity);
+    }
+
+    private static ReceivableAdvanceRequest CreateEntity(GetReceivableAdvanceRequestQuery.ResultSet resultSet)
+    {
         return new ReceivableAdvanceRequest(
             resultSet.ReceivableAdvanceRequestUid,
             resultSet.CreatorUuid,
             Convert.ToDecimal(resultSet.RequestAmount),
             Convert.ToDecimal(resultSet.NetAmount),
             resultSet.RequestDate,
-            (RequestStatus)resultSet.RequestStatusId);
+            (RequestStatus)resultSet.RequestStatusId, 
+            resultSet.FinishDate);
     }
 
-    public Task UpdateAsync(ReceivableAdvanceRequest request)
-    {
-        return dataContext.UpdateReceivableAdvanceRequest(new(request.Id, (int)request.Status, request.FinishDate!.Value));
-    }
 }

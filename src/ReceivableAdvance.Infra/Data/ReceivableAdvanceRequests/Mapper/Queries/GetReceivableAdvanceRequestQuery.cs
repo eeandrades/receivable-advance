@@ -21,6 +21,8 @@ public static class GetReceivableAdvanceRequestQuery
 
     private const string GetPendingReceivableAdvanceRequestByCreatorIdFilter = "rar.creator_uuid = @CreatorUuid and rar.request_status_id = @RequestStatusId";
 
+    private const string ListReceivableAdvanceRequestByCreatorIdFilter = "rar.creator_uuid = @CreatorUuid";
+
 
     public sealed record ResultSet(
         Guid ReceivableAdvanceRequestUid,
@@ -39,6 +41,17 @@ public static class GetReceivableAdvanceRequestQuery
         return dtc.Connection.QueryFirstOrDefaultAsync<ResultSet>(query, paramters);
     }
 
+    public static Task<IEnumerable<ResultSet>> ListReceivableAdvanceRequestByCreatorId(this DataContext dtc, Guid creatorId)
+    {
+        var query = string.Format(Query, ListReceivableAdvanceRequestByCreatorIdFilter);
+
+        var param = new
+        {
+            CreatorUuid = creatorId,
+        };
+
+        return dtc.Connection.QueryAsync<ResultSet>(query, param);
+    }
 
 
     public static Task<ResultSet?> GetReceivableAdvanceRequestById(this DataContext dtc, Guid receivableAdvanceRequestId)

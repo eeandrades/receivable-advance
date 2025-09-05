@@ -6,4 +6,5 @@ public interface IReceivableAdvanceRequestRepository
     Task<ReceivableAdvanceRequest?> GetByIdAsync(Guid id);
     Task<ReceivableAdvanceRequest?> GetPendingByCreatorAsync(Guid creatorId);
     Task UpdateAsync(ReceivableAdvanceRequest request);
+    Task<IEnumerable<ReceivableAdvanceRequest>>  ListByCreatorIdAsync(Guid creatorId);
 }
