@@ -26,7 +26,7 @@ public static class SimulateReceivableAdvanceRequestEndpoint
     public static RouteGroupBuilder MapSimulateReceivableAdvanceRequestEndpoint(this RouteGroupBuilder group)
     {
         group
-            .MapPost("-simulations", ExecuteAsync)
+            .MapPost("simulations", ExecuteAsync)
             .Produces<Response>(StatusCodes.Status200OK)
             .WithOpenApi();
         return group;
