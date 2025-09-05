@@ -8,4 +8,6 @@ public record ReceivableAdvanceRequestCreatedSuccess() :
 public record ReceivableAdvanceRequestPendingAlreadyExists() :
     Notification("There is already a pending request.", Levels.BusinessError);
 
+public record InvalidRequestAmount(decimal amount) :
+    Notification($"The requested amount must be greater than zero. {amount}", Levels.BusinessError);
 

@@ -6,8 +6,21 @@ namespace ReceivableAdvance.Application.Commands.SimulateReceivableAdvanceReques
 public sealed class SimulateReceivableAdvanceRequestHandler(
     IReceivableAdvanceFeePolicy feePolicy) : ISimulateReceivableAdvanceRequestHandler
 {
+
+    private Notification Validate(SimulateReceivableAdvanceRequestCommand command)
+    {
+        if (command.RequestAmount <= 0)
+        {
+            return new InvalidRequestAmount(command.RequestAmount);
+        }
+        return Notification.Success;
+    }
+
     public async Task<Result<SimulateReceivableAdvanceRequestResult>> ExecuteAsync(SimulateReceivableAdvanceRequestCommand command)
     {
+        var validation = Validate(command);
+        if (validation.IsInvalid)
+            return Result<SimulateReceivableAdvanceRequestResult>.Create(validation);
 
         var request = await ReceivableAdvanceRequest.CreatePending(
             command.CreatorId,
