@@ -1,7 +1,3 @@
-INSERT INTO receivable_advance_request
-(receivable_advance_request_uid, creator_uuid, request_date, request_amount, net_amount, request_status_id, finish_date)
-VALUES('97A9C727-1B94-4ADB-8EA2-A2CD53A76E5F', '3FA85F64-5717-4562-B3FC-2C963F66AFA6', '2025-09-04 21:27:39.9793333', 1000, 950, 1, NULL);
-
 --==============================================================
 -- Table: receivable_advance_request
 --==============================================================
