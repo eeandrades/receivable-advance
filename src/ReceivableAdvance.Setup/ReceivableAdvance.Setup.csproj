@@ -17,4 +17,14 @@
     <ProjectReference Include="..\ReceivableAdvance.Infra\ReceivableAdvance.Infra.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Data\receivable-advance-db.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Infra\" />
+  </ItemGroup>
+
 </Project>

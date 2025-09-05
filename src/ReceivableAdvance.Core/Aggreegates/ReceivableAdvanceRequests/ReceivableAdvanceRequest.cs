@@ -5,7 +5,7 @@ namespace ReceivableAdvance.Aggreegates.ReceivableAdvanceRequests;
 public sealed class ReceivableAdvanceRequest(Guid id, Guid creatorId, Money requestValue, Money netValue, DateTime requestDate, RequestStatus status, DateTime? finishDate)
 {
     public Guid Id { get; } = id;
-    public Guid CreatorId { get; } = creatorId;
+    public Guid CreatorId { get; init; } = creatorId;
     public Money RequestValue { get; } = requestValue;
     public Money NetValue { get; } = netValue;
     public DateTime RequestDate { get; } = requestDate;

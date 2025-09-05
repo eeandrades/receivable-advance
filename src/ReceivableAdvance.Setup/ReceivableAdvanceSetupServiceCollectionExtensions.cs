@@ -27,7 +27,7 @@ public static class ReceivableAdvanceSetupServiceCollectionExtensions
 
         services.AddSingleton(new DbConnectionStringBuilder()
         {
-            ["Data Source"] = "C:\\dados\\receivable-advance\\data\\receivable-advance-db"
+            ["Data Source"] = GetDbPath()
         });
 
         //O sqllite tem um número de tipos limitados e o Dapper não os mapeia corretamente,
@@ -37,5 +37,10 @@ public static class ReceivableAdvanceSetupServiceCollectionExtensions
 
         return services;
 
+    }
+
+    private static string GetDbPath()
+    {
+        return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "receivable-advance-db.sqlite");
     }
 }

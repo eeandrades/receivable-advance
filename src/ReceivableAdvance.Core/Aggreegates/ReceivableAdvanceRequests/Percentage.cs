@@ -1,4 +1,6 @@
-﻿namespace ReceivableAdvance.Aggreegates.ReceivableAdvanceRequests;
+﻿using System.Reflection.Metadata.Ecma335;
+
+namespace ReceivableAdvance.Aggreegates.ReceivableAdvanceRequests;
 
 public sealed record Percentage
 {
@@ -12,4 +14,6 @@ public sealed record Percentage
     public static Percentage FromPercent(decimal percent) => new(percent / 100m);
 
     public static implicit operator decimal(Percentage percentage) => percentage.Value;
+
+    public static implicit operator Percentage(decimal value) => new Percentage(value);
 }
